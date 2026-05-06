@@ -1,0 +1,37 @@
+# Site Info
+title: Media
+author: CoolV1994
+description: >
+  Roku App Media Content
+
+# Site URL
+#baseurl: "/Roku-Media"
+#url: "https://coolv-test.github.io"
+
+# Pagination
+paginate: 20
+paginate_path: "/blog/page:num/"
+
+# Collections
+collections:
+  video:
+    output: true
+    media: video
+  movie:
+    output: true
+    media: video
+  tv:
+    output: true
+    media: video
+  music:
+    output: true
+    media: audio
+  podcast:
+    output: true
+    media: audio
+  audiobook:
+    output: true
+    media: audio
+  photo:
+    output: true
+    media: image
