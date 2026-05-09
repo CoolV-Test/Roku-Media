@@ -1,0 +1,107 @@
+{% assign asset = include.asset %}
+{
+  {% unless asset.type == "season" %}
+  "id": "{{ asset.id }}",
+  {% endunless %}
+  "type": "{{ asset.type }}",
+  "titles": [
+  {% for title in asset.titles %}
+    {
+      "value": "{{ title[0] }}",
+      "languages": [
+      {% for language in title[1] %}
+        "{{ language }}"{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+      ]
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ],
+  "shortDescriptions": [
+  {% for description in asset.shortDescriptions %}
+    {
+      "value": "{{ description[0] }}",
+      "languages": [
+      {% for language in description[1] %}
+        "{{ language }}"{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+      ]
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ],
+  "longDescriptions": [
+  {% for description in asset.longDescriptions %}
+    {
+      "value": "{{ description[0] }}",
+      "languages": [
+      {% for language in description[1] %}
+        "{{ language }}"{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+      ]
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ],
+  {% if asset.type == "season" %}
+  "seasonInfo": {
+    "seriesId": "{{ asset.seasonInfo.seriesId }}",
+    "seasonNumber": {{ asset.seasonInfo.seasonNumber }}
+  },
+  {% endif %}
+  {% if asset.type == "episode" %}
+  "episodeInfo": {
+    "seriesId": "{{ asset.episodeInfo.seriesId }}",
+    "episodeNumber": {{ asset.episodeInfo.episodeNumber }}
+  },
+  {% endif %}
+  "releaseDate": "{{ asset.releaseDate }}",
+  "genres": [
+  {% for genre in asset.genres %}
+    "{{ genre }}"{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ],
+  "advisoryRatings": [
+  {% for advisoryRating in asset.advisoryRatings %}
+    {
+      "source": "{{ advisoryRating[0] }}",
+      "value": "{{ advisoryRating[1] }}"
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ],
+  "images": [
+  {% for imageType in asset.images %}
+    {% for image in imageType[1] %}
+    {
+      "type": "{{ imageType[0] }}",
+      "url": "{{ image[0] }}",
+      "languages": [
+      {% for language in image[1] %}
+        "{{ language }}"{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+      ]
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  {% endfor %}
+  ],
+  "durationInSeconds": {{ asset.durationInSeconds }},
+  "content": {
+  {% for contentType in asset.content %}
+    "{{ contentType[0] }}": [
+    {% for content in contentType[1] %}
+      {
+        "license": "{{ content.license }}",
+        "quality": "{{ content.quality }}",
+        "playId": "{{ content.playId }}",
+        "availabilityStartTimeStamp": {{ content.availabilityStartTimeStamp }},
+        "availabilityEndTimeStamp": {{ content.availabilityEndTimeStamp }},
+        "availabilityInfo": {
+          "country": [
+          {% for country in content.availabilityInfo %}
+            "{{ country }}"{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+          ]
+        }
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ]{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  }
+}
