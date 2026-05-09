@@ -1,0 +1,60 @@
+---
+version: '1'
+defaultLanguage: en
+defaultAvailabilityCountries:
+- US
+assets:
+- id: f182d1ce-d635-4538-aa8c-fb25efd6c020
+  type: liveStream
+  content:
+    playOptions:
+    - playId: "[https://rokudevelopers.com%3Fchannel_id%3D111111](https://rokudevelopers.com%3Fchannel_id=111111/)"
+      license: free
+      quality: HD
+    - playId: "[https://rokudevelopers.com%3Fchannel_id%3D222222](https://rokudevelopers.com%3Fchannel_id=222222/)"
+      license: free
+      quality: UHD
+  externalIds:
+  - source: GRACENOTE_STATION_ID
+    id: ABCDE
+  tags:
+  - partner_channel
+- id: f182d1ce-d635-4538-aa8c-fb25efd6c020
+  type: liveStream
+  content:
+    playOptions:
+    - playId: "[https://rokudevelopers.com%3Fchannel_id%3D111111](https://rokudevelopers.com%3Fchannel_id=111111/)"
+      license: free
+      quality: HD
+      availabilityInfo:
+        country:
+        - us
+        restrictions:
+        - allow: true
+          type: geo
+          valueType: postal_code
+          values:
+          - '19468'
+          - '19462'
+          - '19465'
+          - '19464'
+    - playId: "[https://rokudevelopers.com%3Fchannel_id%3D222222](https://rokudevelopers.com%3Fchannel_id=222222/)"
+      license: free
+      quality: UHD
+      availabilityInfo:
+        country:
+        - us
+        restrictions:
+        - allow: false
+          type: geo
+          valueType: postal_code
+          values:
+          - '19468'
+          - '19462'
+          - '19465'
+          - '19464'
+  externalIds:
+  - source: GRACENOTE_STATION_ID
+    id: RegionalABCDE
+  tags:
+  - regional_partner_channel
