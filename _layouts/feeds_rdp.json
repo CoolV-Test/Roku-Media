@@ -1,0 +1,34 @@
+{% assign feed = include.feed %}
+{
+  "providerName": "{{ feed.providerName }}",
+  "language": "{{ feed.language }}",
+  "lastUpdated": "{{ feed.lastUpdated }}",
+{% for assetType in feed.assets %}
+  "{{ assetType[0] }}": [
+  {% for asset in assetType[1] %}
+    {% include asset_rdp.json asset=asset %}
+  {% endfor %}
+  ],
+{% endfor %}
+  "playlists": [
+  {% for playlist in feed.playlists %}
+    {
+      "name": "{{ playlist[0] }}",
+      "itemIds": [
+      {% for itemId in playlist[1] %}
+        "{{ itemId }}"{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+      ]
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ],
+  "categories": [
+  {% for category in feed.categories %}
+    {
+      "name": "{{ category.name }}",
+      "playlistName": "{{ category.playlistName }}",
+      "order": "{{ category.order }}"
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ]
+}
